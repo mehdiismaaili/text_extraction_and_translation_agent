@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>استخراج وترجمة النص</title>
+  <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>استخراج وترجمة النص</h1>
+    <form id="processForm" enctype="multipart/form-data">
+      <label for="image_file">اختر صورة:</label>
+      <input type="file" id="image_file" name="image_file" accept="image/*">
+      
+      <label for="action">ماذا تريد أن تفعل؟</label>
+      <select id="action" name="action">
+        <option value="extract">استخراج النص فقط</option>
+        <option value="translate">استخراج النص وترجمته</option>
+      </select>
+      
+      <!-- ✅ Select the language of the text in the image -->
+      <label for="in_lang">لغة النص في الصورة:</label>
+      <select id="in_lang" name="in_lang">
+        <option value="English">الإنجليزية</option>
+        <option value="French">الفرنسية</option>
+        <option value="Spanish">الإسبانية</option>
+        <option value="German">الألمانية</option>
+        <option value="Italian">الإيطالية</option>
+        <option value="Portuguese">البرتغالية</option>
+        <option value="Dutch">الهولندية</option>
+        <option value="Russian">الروسية</option>
+        <option value="Chinese (Simplified)">الصينية المبسطة</option>
+        <option value="Chinese (Traditional)">الصينية التقليدية</option>
+        <option value="Japanese">اليابانية</option>
+        <option value="Korean">الكورية</option>
+        <option value="Arabic">العربية</option>
+        <option value="Hindi">الهندية</option>
+        <option value="Turkish">التركية</option>
+        <option value="Thai">التايلاندية</option>
+        <option value="Hebrew">العبرية</option>
+        <option value="Vietnamese">الفيتنامية</option>
+        <option value="Greek">اليونانية</option>
+        <option value="Czech">التشيكية</option>
+        <option value="Polish">البولندية</option>
+        <option value="Swedish">السويدية</option>
+        <option value="Hungarian">الهنغارية</option>
+        <option value="Danish">الدانمركية</option>
+        <option value="Finnish">الفنلندية</option>
+        <option value="Romanian">الرومانية</option>
+        <option value="Bulgarian">البلغارية</option>
+        <option value="Malay">الماليزية</option>
+        <option value="Indonesian">الإندونيسية</option>
+        <option value="Ukrainian">الأوكرانية</option>
+      </select>
+
+      <!-- ✅ Translation options (hidden until "translate" is selected) -->
+      <div id="translationOptions" style="display: none;">
+        <label for="dest_lang">لغة الترجمة:</label>
+        <select id="dest_lang" name="dest_lang">
+          <option value="English">الإنجليزية</option>
+          <option value="French">الفرنسية</option>
+          <option value="Spanish">الإسبانية</option>
+          <option value="German">الألمانية</option>
+          <option value="Italian">الإيطالية</option>
+          <option value="Portuguese">البرتغالية</option>
+          <option value="Dutch">الهولندية</option>
+          <option value="Russian">الروسية</option>
+          <option value="Chinese (Simplified)">الصينية المبسطة</option>
+          <option value="Chinese (Traditional)">الصينية التقليدية</option>
+          <option value="Japanese">اليابانية</option>
+          <option value="Korean">الكورية</option>
+          <option value="Arabic">العربية</option>
+          <option value="Hindi">الهندية</option>
+          <option value="Turkish">التركية</option>
+          <option value="Thai">التايلاندية</option>
+          <option value="Hebrew">العبرية</option>
+          <option value="Vietnamese">الفيتنامية</option>
+          <option value="Greek">اليونانية</option>
+          <option value="Czech">التشيكية</option>
+          <option value="Polish">البولندية</option>
+          <option value="Swedish">السويدية</option>
+          <option value="Hungarian">الهنغارية</option>
+          <option value="Danish">الدانمركية</option>
+          <option value="Finnish">الفنلندية</option>
+          <option value="Romanian">الرومانية</option>
+          <option value="Bulgarian">البلغارية</option>
+          <option value="Malay">الماليزية</option>
+          <option value="Indonesian">الإندونيسية</option>
+          <option value="Ukrainian">الأوكرانية</option>
+        </select>
+      </div>
+
+      <button type="submit">معالجة الصورة</button>
+    </form>
+    
+    <div class="output-container" id="output" style="display: none;">
+      <h3>النص المعالج:</h3>
+      <p id="finalText">سيظهر النص هنا.</p>
+
+      <!-- ✅ New: Readability Score (only for translation) -->
+      <div id="readability" style="display: none;">
+        <h3>مستوى سهولة القراءة:</h3>
+        <p id="readabilityScore"></p>
+      </div>
+
+      <!-- ✅ New: Style Issues (only for translation) -->
+      <div id="styleIssues" style="display: none;">
+        <h3>ملاحظات على أسلوب الكتابة:</h3>
+        <ul id="styleIssuesList"></ul>
+      </div>
+
+      <button class="copy-btn" id="copyBtn">نسخ</button>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', path='js/script.js') }}"></script>
+</body>
+</html>

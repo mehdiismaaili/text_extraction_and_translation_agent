@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>استخراج وترجمة النص</title>
+  <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>استخراج وترجمة النص</h1>
+    <form id="processForm" enctype="multipart/form-data">
+      <label for="image_file">اختر صورة:</label>
+      <input type="file" id="image_file" name="image_file" accept="image/*">
+      
+      <label for="in_lang">لغة المصدر (OCR):</label>
+      <select id="in_lang" name="in_lang">
+        <option value="English">الإنجليزية</option>
+        <option value="French">الفرنسية</option>
+        <option value="Spanish">الإسبانية</option>
+        <option value="German">الألمانية</option>
+        <option value="Italian">الإيطالية</option>
+        <option value="Portuguese">البرتغالية</option>
+        <option value="Dutch">الهولندية</option>
+        <option value="Russian">الروسية</option>
+        <option value="Chinese (Simplified)">الصينية المبسطة</option>
+        <option value="Chinese (Traditional)">الصينية التقليدية</option>
+        <option value="Japanese">اليابانية</option>
+        <option value="Korean">الكورية</option>
+        <option value="Arabic">العربية</option>
+        <option value="Hindi">الهندية</option>
+        <option value="Turkish">التركية</option>
+        <option value="Thai">التايلاندية</option>
+        <option value="Hebrew">العبرية</option>
+        <option value="Vietnamese">الفيتنامية</option>
+        <option value="Greek">اليونانية</option>
+        <option value="Czech">التشيكية</option>
+        <option value="Polish">البولندية</option>
+        <option value="Swedish">السويدية</option>
+        <option value="Hungarian">الهنغارية</option>
+        <option value="Danish">الدانمركية</option>
+        <option value="Finnish">الفنلندية</option>
+        <option value="Romanian">الرومانية</option>
+        <option value="Bulgarian">البلغارية</option>
+        <option value="Malay">الماليزية</option>
+        <option value="Indonesian">الإندونيسية</option>
+        <option value="Ukrainian">الأوكرانية</option>
+      </select>
+
+      <label for="dest_lang">لغة الترجمة:</label>
+      <select id="dest_lang" name="dest_lang">
+        <option value="English">الإنجليزية</option>
+        <option value="French">الفرنسية</option>
+        <option value="Spanish">الإسبانية</option>
+        <option value="German">الألمانية</option>
+        <option value="Italian">الإيطالية</option>
+        <option value="Portuguese">البرتغالية</option>
+        <option value="Dutch">الهولندية</option>
+        <option value="Russian">الروسية</option>
+        <option value="Chinese (Simplified)">الصينية المبسطة</option>
+        <option value="Chinese (Traditional)">الصينية التقليدية</option>
+        <option value="Japanese">اليابانية</option>
+        <option value="Korean">الكورية</option>
+        <option value="Arabic">العربية</option>
+        <option value="Hindi">الهندية</option>
+        <option value="Turkish">التركية</option>
+        <option value="Thai">التايلاندية</option>
+        <option value="Hebrew">العبرية</option>
+        <option value="Vietnamese">الفيتنامية</option>
+        <option value="Greek">اليونانية</option>
+        <option value="Czech">التشيكية</option>
+        <option value="Polish">البولندية</option>
+        <option value="Swedish">السويدية</option>
+        <option value="Hungarian">الهنغارية</option>
+        <option value="Danish">الدانمركية</option>
+        <option value="Finnish">الفنلندية</option>
+        <option value="Romanian">الرومانية</option>
+        <option value="Bulgarian">البلغارية</option>
+        <option value="Malay">الماليزية</option>
+        <option value="Indonesian">الإندونيسية</option>
+        <option value="Ukrainian">الأوكرانية</option>
+      </select>
+
+      <button type="submit">معالجة الصورة</button>
+    </form>
+    
+    <div class="output-container" id="output" style="display: none;">
+      <button class="copy-btn" id="copyBtn">نسخ</button>
+      <p id="finalText">سيظهر النص المترجم هنا.</p>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', path='js/script.js') }}"></script>
+</body>
+</html>
